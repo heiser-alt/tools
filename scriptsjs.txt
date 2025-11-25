@@ -1,0 +1,20 @@
+function convertWordToPDF() {
+    const file = document.getElementById("wordToPdfInput").files[0];
+    if (!file) return alert("Pilih file Word terlebih dahulu!");
+
+    alert("Konversi Word ke PDF berhasil! (simulasi)");
+}
+
+function convertPDFToWord() {
+    const file = document.getElementById("pdfToWordInput").files[0];
+    if (!file) return alert("Pilih file PDF terlebih dahulu!");
+
+    alert("Konversi PDF ke Word berhasil! (simulasi)");
+}
+
+function convertExcelToPDF() {
+    const file = document.getElementById("excelToPdfInput").files[0];
+    if (!file) return alert("Pilih file Excel terlebih dahulu!");
+
+    alert("Konversi Excel ke PDF berhasil! (simulasi)");
+}
