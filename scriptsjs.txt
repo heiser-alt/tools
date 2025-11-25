@@ -1,20 +1,24 @@
-function convertWordToPDF() {
+async function convertWordToPDF() {
     const file = document.getElementById("wordToPdfInput").files[0];
-    if (!file) return alert("Pilih file Word terlebih dahulu!");
+    if (!file) return alert("Pilih file dulu!");
 
-    alert("Konversi Word ke PDF berhasil! (simulasi)");
-}
+    const apiKey = "API_KEY_KAMU";
 
-function convertPDFToWord() {
-    const file = document.getElementById("pdfToWordInput").files[0];
-    if (!file) return alert("Pilih file PDF terlebih dahulu!");
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("filename", file.name);
 
-    alert("Konversi PDF ke Word berhasil! (simulasi)");
-}
+    const res = await fetch("https://api.cloudconvert.com/v2/convert", {
+        method: "POST",
+        headers: { "Authorization": "Bearer " + apiKey },
+        body: formData
+    });
 
-function convertExcelToPDF() {
-    const file = document.getElementById("excelToPdfInput").files[0];
-    if (!file) return alert("Pilih file Excel terlebih dahulu!");
+    const json = await res.json();
+    const downloadUrl = json.data.data.output.url;
 
-    alert("Konversi Excel ke PDF berhasil! (simulasi)");
+    const a = document.createElement("a");
+    a.href = downloadUrl;
+    a.download = file.name.replace(".docx", ".pdf");
+    a.click();
 }
